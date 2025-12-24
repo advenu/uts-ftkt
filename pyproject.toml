@@ -1,0 +1,15 @@
+[project]
+name = "script"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "get-choice",
+    "icecream>=2.1.8",
+    "pycryptodome>=3.23.0",
+    "pycryptodomex>=3.23.0",
+]
+
+[tool.uv.sources]
+get-choice = { git = "https://github.com/advenu/get_choice.git" }
