@@ -7,9 +7,12 @@ from datetime import datetime, timedelta
 from icecream import ic
 
 from custom_cipher import Json_ECB_Cipher, Secret
-
+from pathlib import Path
 ic.disable()
 
+
+BASE_DIR = Path(__file__).resolve().parent
+ticket_file = BASE_DIR / "ticket.json"
 
 def generate_key(phone_no: str, uts_no: str):
     key_str = f"c{phone_no[:5]}UTS{uts_no[5:10]}{phone_no[5:10]}ri{uts_no[:5]}s71986"
@@ -47,7 +50,7 @@ def create_fake_ticket(
     person: int,
 ):
     # load sample ticket
-    with open("ticket.json") as f:
+    with open(ticket_file) as f:
         ticket: dict = json.load(f)
 
     # update the required fields
