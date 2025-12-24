@@ -133,7 +133,7 @@ def read_ticket(ticket_enc_data: str):
     cipher = Json_ECB_Cipher(secret)
 
     ticket_data = cipher.decrypt(cipher_text)
-    print(json.dumps(ticket_data, indent=3))
+    # print(json.dumps(ticket_data, indent=3))
 
     fields_to_show = {
         "utsno": "UTS No.",
