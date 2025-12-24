@@ -40,7 +40,7 @@ def crud_application(db_path):
 
             user_dt_str = input("Datetime (default: current): ")
             if user_dt_str:
-                dt = datetime.strptime(user_dt_str, "%d/%m/%Y %H:%M:%S")
+                dt = datetime.strptime(user_dt_str, "%Y-%m-%d %H:%M:%S")
             else:
                 dt = datetime.now()
             valid_upto = calc_validity(dt)
@@ -76,14 +76,8 @@ def crud_application(db_path):
 
     conn.close()
 
+if __name__ == "__main__":
+    # Run the application
+    db_path = "MUTS_DB"
 
-# Run the application
-db_path = "MUTS_DB"
-
-if not os.getenv("DEBUG"):
-    db_path = f"/data/data/com.cris.utsmobile/databases/{db_path}"
-
-if not os.path.exists(db_path):
-    raise FileNotFoundError(f"Database file '{db_path}' not found.")
-
-crud_application(db_path)
+    crud_application(db_path)
