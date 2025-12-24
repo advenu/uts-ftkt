@@ -3,7 +3,7 @@ import json
 import random
 import string
 from datetime import datetime, timedelta
-
+import secrets
 from icecream import ic
 
 from custom_cipher import Json_ECB_Cipher, Secret
@@ -12,7 +12,7 @@ ic.disable()
 
 
 BASE_DIR = Path(__file__).resolve().parent
-ticket_file = BASE_DIR / "ticket.json"
+ticket_file = BASE_DIR / "ticket2.json"
 
 def generate_key(phone_no: str, uts_no: str):
     key_str = f"c{phone_no[:5]}UTS{uts_no[5:10]}{phone_no[5:10]}ri{uts_no[:5]}s71986"
@@ -21,7 +21,7 @@ def generate_key(phone_no: str, uts_no: str):
     return key
 
 
-def generate_uts_no():
+def generate_uts_no(length: int = 10) -> str:
     # Define the character pool (letters and digits)
     char_pool = string.ascii_letters + string.digits
 
@@ -32,6 +32,17 @@ def generate_uts_no():
         + "Y"  # 6th character is always 'Y'
         + "".join(random.choices(char_pool, k=4))  # Characters 7-10
     )
+
+    # Generate the uts_no (updated on 2025-12-25)
+    uts_no = (
+        "X"  # 1st character, 'X' appears frequently
+        + "".join(random.choices(char_pool, k=9))  # Characters 2-10
+    )
+
+    # Better approach using secrets module, and latest guess is they are using hex digits only
+    hex_chars = string.hexdigits.upper()[:16]  # 0-9A-F
+    uts_no = "X" + "".join(secrets.choice(hex_chars) for _ in range(length))
+
     return uts_no
 
 
