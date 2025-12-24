@@ -2,7 +2,7 @@ from crud import crud_application
 import os
 
 def main():
-    print("Fake Ticket Generator")
+    # print("Fake Ticket Generator")
 
     # Run the application
     db_path = "MUTS_DB"
