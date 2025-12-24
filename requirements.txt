@@ -1,0 +1,8 @@
+asttokens==3.0.1
+colorama==0.4.6
+executing==2.2.1
+get-choice @ git+https://github.com/advenu/get_choice.git@ac6ac8483996d1e25159bed4b9a9d3dfccb7a626
+icecream==2.1.8
+pycryptodome==3.23.0
+pycryptodomex==3.23.0
+pygments==2.19.2
