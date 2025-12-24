@@ -1,6 +1,6 @@
 import sqlite3
 from datetime import datetime
-
+import os
 from get_choice.chooser import get_choice
 
 from gen_ticket import calc_validity, create_fake_ticket, read_ticket
@@ -79,4 +79,7 @@ def crud_application(db_path):
 
 # Run the application
 db_path = "MUTS_DB"
+if not os.path.exists(db_path):
+    raise FileNotFoundError(f"Database file '{db_path}' not found.")
+
 crud_application(db_path)
